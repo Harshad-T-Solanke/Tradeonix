@@ -1,0 +1,76 @@
+/* SUPPORT SECTION */
+
+.support-tag{
+  color:#00d4ff;
+  letter-spacing:4px;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+.support-title{
+  font-size:4rem;
+  font-weight:800;
+  color:white;
+}
+
+.support-subtitle{
+  max-width:700px;
+  margin:25px auto;
+  color:#94a3b8;
+  line-height:1.9;
+  font-size:1.1rem;
+}
+
+.support-card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:28px;
+  padding:35px;
+  transition:0.4s;
+}
+
+.support-card:hover{
+  transform:translateY(-10px);
+  border-color:#00d4ff;
+  box-shadow:0 20px 40px rgba(0,212,255,0.15);
+}
+
+.support-icon{
+  width:70px;
+  height:70px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#00d4ff,#7c3aed);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-size:1.5rem;
+}
+
+.support-links{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.support-links a{
+  color:#cbd5e1;
+  text-decoration:none;
+  transition:0.3s;
+  position:relative;
+}
+
+.support-links a:hover{
+  color:#00d4ff;
+  padding-left:8px;
+}
+
+@media(max-width:768px){
+
+  .support-title{
+    font-size:2.8rem;
+  }
+
+}

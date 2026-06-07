@@ -1,0 +1,19 @@
+.footer-desc{
+  color:#9ca3af;
+  line-height:1.9;
+}
+
+.footer-heading{
+  color:#00ff9d;
+}
+
+.neo-links{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.neo-links a{
+  color:#d1d5db;
+  text-decoration:none;
+}

@@ -41,8 +41,9 @@ root.render(
     <Route path="/pricing" element={<PricingPage />} />
     <Route path="/support" element={<SupportPage />} />
     <Route path="/*" element={<NotFound />} />
-  </Routes>
+  </Routes> 
 </AppLayout>
   </BrowserRouter>
 )
+
 
