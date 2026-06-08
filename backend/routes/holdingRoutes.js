@@ -1,5 +1,3 @@
-
-
 const express = require("express");
 const router = express.Router();
 
@@ -10,25 +8,50 @@ router.get("/allHoldings", async (req, res) => {
   res.json(allHoldings);
 });
 
+
+router.get(
+  "/allHoldings/:userId",
+  async (req, res) => {
+
+    const holdings =
+      await HoldingsModel.find({
+        userId: req.params.userId,
+      });
+
+    res.json(holdings);
+
+  }
+);
+
 router.get("/portfolioSummary", async (req, res) => {
-  const holdings = await HoldingsModel.find({});
+
+  const holdings =
+    await HoldingsModel.find({});
 
   let invested = 0;
   let current = 0;
 
   holdings.forEach((stock) => {
-    invested += stock.avg * stock.qty;
-    current += stock.price * stock.qty;
+
+    invested +=
+      stock.avg * stock.qty;
+
+    current +=
+      stock.price * stock.qty;
+
   });
 
-  const profit = current - invested;
+  const profit =
+    current - invested;
 
   res.json({
     invested,
     current,
     profit,
-    holdingsCount: holdings.length,
+    holdingsCount:
+      holdings.length,
   });
+
 });
 
 module.exports = router;

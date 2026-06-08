@@ -1,113 +1,180 @@
 const express = require("express");
+
 const router = express.Router();
 
-const { OrdersModel } = require("../model/OrdersModel");
+const { OrdersModel } =
+  require("../model/OrdersModel");
 
 const { HoldingsModel } =
   require("../model/HoldingsModel");
 
-router.get("/allOrders", async (req, res) => {
-  const orders = await OrdersModel.find({});
-  res.json(orders);
-});
+const { NotificationModel } =
+  require("../model/NotificationModel");
 
-router.post("/newOrder", async (req, res) => {
+router.get(
+  "/allOrders",
+  async (req, res) => {
 
-  const newOrder = new OrdersModel({
-    userId: req.body.userId,
-    name: req.body.name,
-    qty: req.body.qty,
-    price: req.body.price,
-    mode: "BUY",
-  });
+    const orders =
+      await OrdersModel.find({});
 
-  await newOrder.save();
+    res.json(orders);
 
-  const existingHolding =
-    await HoldingsModel.findOne({
-      name: req.body.name,
-    });
-
-  if (existingHolding) {
-
-    existingHolding.qty =
-      existingHolding.qty +
-      Number(req.body.qty);
-
-    existingHolding.price =
-      Number(req.body.price);
-
-    await existingHolding.save();
-
-  } else {
-
-    const newHolding =
-      new HoldingsModel({
-        name: req.body.name,
-        qty: req.body.qty,
-        avg: req.body.price,
-        price: req.body.price,
-        net: "+0.00%",
-        day: "+0.00%",
-      });
-
-    await newHolding.save();
   }
+);
 
-  res.json({
-    message: "Buy Order Saved",
-  });
-});
+router.post(
+  "/newOrder",
+  async (req, res) => {
 
-router.post("/sellOrder", async (req, res) => {
+    try {
 
-  const order = new OrdersModel({
-    userId: req.body.userId,
-    name: req.body.name,
-    qty: req.body.qty,
-    price: req.body.price,
-    mode: "SELL",
-  });
+      const newOrder =
+        new OrdersModel({
+          userId: req.body.userId,
+          name: req.body.name,
+          qty: req.body.qty,
+          price: req.body.price,
+          mode: "BUY",
+        });
 
-  await order.save();
+      await newOrder.save();
 
-  const holding =
-    await HoldingsModel.findOne({
-      name: req.body.name,
-    });
+      await new NotificationModel({
+        userId: req.body.userId,
+        title: "BUY Order",
+        message: `${req.body.name} purchased successfully`,
+      }).save();
 
-  if (holding) {
+      const existingHolding =
+        await HoldingsModel.findOne({
+          userId: req.body.userId,
+          name: req.body.name,
+        });
 
-    holding.qty =
-      holding.qty -
-      Number(req.body.qty);
+      if (existingHolding) {
 
-    if (holding.qty <= 0) {
+        existingHolding.qty =
+          existingHolding.qty +
+          Number(req.body.qty);
 
-      await HoldingsModel.deleteOne({
-        _id: holding._id,
+        existingHolding.price =
+          Number(req.body.price);
+
+        await existingHolding.save();
+
+      } else {
+
+        const newHolding =
+          new HoldingsModel({
+            userId: req.body.userId,
+            name: req.body.name,
+            qty: req.body.qty,
+            avg: req.body.price,
+            price: req.body.price,
+            net: "+0.00%",
+            day: "+0.00%",
+          });
+
+        await newHolding.save();
+
+      }
+
+      res.json({
+        message: "Buy Order Saved",
       });
 
-    } else {
+    } catch (err) {
 
-      await holding.save();
+      console.log(err);
+
+      res.status(500).json({
+        message: "Server Error",
+      });
 
     }
+
   }
+);
 
-  res.json({
-    message: "Sell Order Saved",
-  });
-});
+router.post(
+  "/sellOrder",
+  async (req, res) => {
 
-router.get("/userOrders/:userId", async (req, res) => {
+    try {
 
-  const orders = await OrdersModel.find({
-    userId: req.params.userId,
-  });
+      const order =
+        new OrdersModel({
+          userId: req.body.userId,
+          name: req.body.name,
+          qty: req.body.qty,
+          price: req.body.price,
+          mode: "SELL",
+        });
 
-  res.json(orders);
+      await order.save();
 
-});
+      await new NotificationModel({
+        userId: req.body.userId,
+        title: "SELL Order",
+        message: `${req.body.name} sold successfully`,
+      }).save();
+
+      const holding =
+        await HoldingsModel.findOne({
+          userId: req.body.userId,
+          name: req.body.name,
+        });
+
+      if (holding) {
+
+        holding.qty =
+          holding.qty -
+          Number(req.body.qty);
+
+        if (holding.qty <= 0) {
+
+          await HoldingsModel.deleteOne({
+            _id: holding._id,
+          });
+
+        } else {
+
+          await holding.save();
+
+        }
+
+      }
+
+      res.json({
+        message: "Sell Order Saved",
+      });
+
+    } catch (err) {
+
+      console.log(err);
+
+      res.status(500).json({
+        message: "Server Error",
+      });
+
+    }
+
+  }
+);
+
+router.get(
+  "/userOrders/:userId",
+  async (req, res) => {
+
+    const orders =
+      await OrdersModel.find({
+        userId: req.params.userId,
+      });
+
+    res.json(orders);
+
+  }
+);
 
 module.exports = router;

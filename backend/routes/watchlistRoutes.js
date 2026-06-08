@@ -5,16 +5,35 @@ const {
   WatchlistModel,
 } = require("../model/WatchlistModel");
 
+const {
+  NotificationModel,
+} = require("../model/NotificationModel");
+
 router.get(
   "/watchlist/:userId",
   async (req, res) => {
 
-    const watchlist =
-      await WatchlistModel.find({
-        userId: req.params.userId,
+    try {
+
+      const watchlist =
+        await WatchlistModel.find({
+          userId: req.params.userId,
+        });
+
+      console.log(watchlist);
+
+      res.json(watchlist);
+
+    } catch (err) {
+
+      console.log(err);
+
+      res.status(500).json({
+        message: err.message,
       });
 
-    res.json(watchlist);
+    }
+
   }
 );
 
@@ -31,6 +50,11 @@ router.post(
 
     await stock.save();
 
+    await NotificationModel.create({
+  userId: req.body.userId,
+  message: `${req.body.name} added to watchlist`,
+});
+
     res.json({
       message: "Added",
     });
@@ -41,19 +65,34 @@ router.delete(
   "/watchlist/:id",
   async (req, res) => {
 
-    await WatchlistModel.findByIdAndDelete(
-      req.params.id
-    );
+    const stock =
+  await WatchlistModel.findById(
+    req.params.id
+  );
 
-    res.json({
-      message: "Deleted",
-    });
+if (stock) {
+
+  await NotificationModel.create({
+    userId: stock.userId,
+    message: `${stock.name} removed from watchlist`,
+  });
+
+  await WatchlistModel.findByIdAndDelete(
+    req.params.id
+  );
+}
+
+res.json({
+  message: "Deleted",
+});
   }
 );
 
 router.post(
   "/addWatchlist",
   async (req, res) => {
+
+    console.log("BODY:", req.body);
 
     const stock =
       new WatchlistModel({
@@ -64,9 +103,16 @@ router.post(
 
     await stock.save();
 
-    res.json({
-      message: "Stock Added",
-    });
+await NotificationModel.create({
+  userId: req.body.userId,
+  message: `${req.body.name} added to watchlist`,
+});
+
+console.log("SAVED:", stock);
+
+res.json({
+  message: "Stock Added",
+});
 
   }
 );

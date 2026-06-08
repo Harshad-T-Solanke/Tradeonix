@@ -3,7 +3,6 @@ const router = express.Router();
 
 const { FundsModel } = require("../model/FundsModel");
 
-/* ADD FUNDS */
 
 router.post(
   "/addFunds",
@@ -23,7 +22,7 @@ router.post(
   }
 );
 
-/* WITHDRAW FUNDS */
+
 
 router.post(
   "/withdrawFunds",
@@ -43,7 +42,7 @@ router.post(
   }
 );
 
-/* ALL FUND HISTORY */
+
 
 router.get(
   "/funds/:userId",

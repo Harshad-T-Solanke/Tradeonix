@@ -12,7 +12,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
 
-/* ROUTES */
+
 const fundsRoutes =
 require("./routes/fundsRoutes");
 
@@ -35,12 +35,24 @@ const {
 const watchlistRoutes =
 require("./routes/watchlistRoutes");
 
+const marketRoutes =
+  require("./routes/marketRoutes");
+
+const notificationsRoutes =
+  require("./routes/notificationsRoutes");
+
+const portfolioRoutes =
+  require("./routes/portfolioRoutes");
+
+app.use(notificationsRoutes);
+app.use(marketRoutes);
 app.use(authRoutes);
 app.use(orderRoutes);
 app.use(holdingRoutes);
 app.use(positionRoutes);
 app.use(watchlistRoutes);
 app.use(fundsRoutes);
+app.use(portfolioRoutes);
 
 app.post(
   "/watchlist",

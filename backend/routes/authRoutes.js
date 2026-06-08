@@ -37,27 +37,27 @@ router.post("/signup", async (req, res) => {
     await newUser.save();
 
     await WatchlistModel.insertMany([
-  {
-    userId: newUser._id,
-    name: "TCS",
-    price: 3500,
-  },
-  {
-    userId: newUser._id,
-    name: "INFY",
-    price: 1500,
-  },
-  {
-    userId: newUser._id,
-    name: "RELIANCE",
-    price: 2800,
-  },
-  {
-    userId: newUser._id,
-    name: "HDFCBANK",
-    price: 1700,
-  },
-]);
+      {
+        userId: newUser._id,
+        name: "TCS",
+        price: 3500,
+      },
+      {
+        userId: newUser._id,
+        name: "INFY",
+        price: 1500,
+      },
+      {
+        userId: newUser._id,
+        name: "RELIANCE",
+        price: 2800,
+      },
+      {
+        userId: newUser._id,
+        name: "HDFCBANK",
+        price: 1700,
+      },
+    ]);
 
     res.status(201).json({
       message: "Signup successful",
@@ -94,7 +94,7 @@ router.post("/login", async (req, res) => {
   if (!isMatch)
     return res.status(400).send("Invalid password!");
 
-  
+
 
   const token = jwt.sign(
     { id: user._id },
@@ -105,8 +105,68 @@ router.post("/login", async (req, res) => {
   res.json({
     token,
     name: user.name,
+    email: user.email,
     userId: user._id,
   });
+
+});
+
+router.post("/changePassword", async (req, res) => {
+
+  try {
+
+    const {
+      userId,
+      currentPassword,
+      newPassword,
+    } = req.body;
+
+    const user =
+      await UserModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    const isMatch =
+      await bcrypt.compare(
+        currentPassword,
+        user.password
+      );
+
+    if (!isMatch) {
+      return res.status(400).json({
+        message: "Current password is incorrect",
+      });
+    }
+
+    const hashedPassword =
+      await bcrypt.hash(
+        newPassword,
+        10
+      );
+
+    user.password =
+      hashedPassword;
+
+    await user.save();
+
+    res.json({
+      message:
+        "Password updated successfully",
+    });
+
+  } catch (err) {
+
+    console.log(err);
+
+    res.status(500).json({
+      message: "Server Error",
+    });
+
+  }
 
 });
 
