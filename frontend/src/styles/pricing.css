@@ -1,0 +1,203 @@
+
+
+.brokerage-tag{
+  color:#00d4ff;
+  letter-spacing:3px;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+.brokerage-main-title{
+  font-size:3.5rem;
+  font-weight:800;
+  color:white;
+}
+
+.brokerage-main-title span{
+  background:linear-gradient(90deg,#00d4ff,#7c3aed);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.brokerage-subtitle{
+  max-width:750px;
+  margin:25px auto;
+  color:#94a3b8;
+  line-height:1.9;
+  font-size:1.1rem;
+}
+
+.brokerage-wrapper{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:35px;
+  padding:60px;
+  overflow:hidden;
+  position:relative;
+}
+
+.brokerage-wrapper::before{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:#00d4ff;
+  filter:blur(150px);
+  top:-100px;
+  left:-100px;
+  opacity:0.15;
+}
+
+.brokerage-item{
+  display:flex;
+  gap:25px;
+  margin-bottom:40px;
+}
+
+.brokerage-icon{
+  font-size:2rem;
+  color:#00d4ff;
+  min-width:50px;
+}
+
+.brokerage-item h5{
+  color:white;
+  margin-bottom:10px;
+  font-weight:600;
+}
+
+.brokerage-item p{
+  color:#94a3b8;
+  line-height:1.8;
+  margin:0;
+}
+
+.brokerage-price-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:30px;
+  padding:50px 40px;
+  text-align:center;
+  transition:0.4s;
+}
+
+.brokerage-price-card:hover{
+  transform:translateY(-10px);
+  border-color:#00d4ff;
+  box-shadow:0 20px 40px rgba(0,212,255,0.15);
+}
+
+.price-label{
+  color:#00d4ff;
+  letter-spacing:2px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.brokerage-price{
+  font-size:5rem;
+  font-weight:800;
+  margin:20px 0;
+  background:linear-gradient(90deg,#00d4ff,#7c3aed);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.price-desc{
+  color:#94a3b8;
+  margin-bottom:35px;
+  line-height:1.8;
+}
+
+.brokerage-btn{
+  background:linear-gradient(135deg,#00d4ff,#7c3aed);
+  border:none;
+  color:white;
+  padding:16px 30px;
+  border-radius:14px;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  width:100%;
+  transition:0.3s;
+}
+
+.brokerage-btn:hover{
+  transform:translateY(-4px);
+  box-shadow:0 15px 35px rgba(0,212,255,0.25);
+}
+.pricing-top-badge{
+  display:inline-block;
+  padding:10px 20px;
+  border-radius:50px;
+  background:rgba(0,212,255,0.1);
+  color:#00d4ff;
+  font-size:13px;
+  letter-spacing:2px;
+  font-weight:700;
+}
+
+.modern-price-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+  border-radius:30px;
+  padding:50px 35px;
+  transition:0.4s;
+  height:100%;
+  position:relative;
+  overflow:hidden;
+}
+
+.modern-price-card::before{
+  content:"";
+  position:absolute;
+  width:250px;
+  height:250px;
+  background:#00d4ff;
+  filter:blur(120px);
+  top:-100px;
+  right:-100px;
+  opacity:0.15;
+}
+
+.modern-price-card:hover{
+  transform:translateY(-10px);
+  border-color:#00d4ff;
+  box-shadow:0 20px 40px rgba(0,212,255,0.15);
+}
+
+.active-price-card{
+  border:1px solid #00d4ff;
+  transform:scale(1.03);
+}
+
+.pricing-icon{
+  width:75px;
+  height:75px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.08);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#00d4ff;
+  font-size:2rem;
+}
+
+.price-gradient{
+  font-size:4rem;
+  font-weight:800;
+  background:linear-gradient(90deg,#00d4ff,#7c3aed);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.pricing-text{
+  color:#94a3b8;
+  line-height:1.9;
+  font-size:1rem;
+}
