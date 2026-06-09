@@ -11,17 +11,21 @@ const WatchList = () => {
 
   const handleAddStock = async () => {
 
-    console.log(
-      "USER ID:",
-      localStorage.getItem("userId")
+    const stockName = prompt(
+      "Enter Stock Symbol (TCS, INFY, RELIANCE)"
     );
-
-    const stockName =
-      prompt("Enter Stock Name");
 
     if (!stockName) return;
 
+    const symbol =
+      stockName.toUpperCase();
+
     try {
+
+      const marketRes =
+        await axios.get(
+          `http://localhost:3002/market/${symbol}`
+        );
 
       await axios.post(
         "http://localhost:3002/addWatchlist",
@@ -29,8 +33,10 @@ const WatchList = () => {
           userId:
             localStorage.getItem("userId"),
 
-          name: stockName,
-          price: 100,
+          name: symbol,
+
+          price:
+            marketRes.data.price,
         }
       );
 
@@ -40,7 +46,12 @@ const WatchList = () => {
 
       console.log(err);
 
+      alert(
+        "Unable to add stock"
+      );
+
     }
+
   };
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -96,6 +107,19 @@ const WatchList = () => {
         console.log(err);
 
       });
+
+  }, []);
+  useEffect(() => {
+
+    const interval =
+      setInterval(() => {
+
+        window.location.reload();
+
+      }, 60000);
+
+    return () =>
+      clearInterval(interval);
 
   }, []);
 
@@ -215,7 +239,9 @@ const WatchListItem = ({ stock }) => {
           )
           }
 
-          <span className="price">{stock.price}</span>
+          <span className="price">
+            ₹ {Number(stock.price).toFixed(2)}
+          </span>
         </div>
       </div>
 
@@ -223,13 +249,18 @@ const WatchListItem = ({ stock }) => {
         <WatchListActions
           uid={stock.name}
           stockId={stock._id}
+          currentPrice={stock.price}
         />
       }
     </li>
   );
 };
 
-const WatchListActions = ({ uid, stockId }) => {
+const WatchListActions = ({
+  uid,
+  stockId,
+  currentPrice,
+}) => {
 
   const generalContext =
     useContext(GeneralContext);
@@ -249,7 +280,7 @@ const WatchListActions = ({ uid, stockId }) => {
             localStorage.getItem("userId"),
           name: uid,
           qty: 1,
-          price: 100,
+          price: currentPrice,
         }
       );
 
@@ -322,29 +353,6 @@ const WatchListActions = ({ uid, stockId }) => {
         >
           Remove
         </button>
-
-        <Tooltip
-          title="Analytics (A)"
-          placement="top"
-          arrow
-          TransitionComponent={Grow}
-        >
-          <button className="action">
-            <BarChartOutlined className="icon" />
-          </button>
-        </Tooltip>
-
-        <Tooltip
-          title="More (M)"
-          placement="top"
-          arrow
-          TransitionComponent={Grow}
-        >
-          <button className="action">
-            <MoreHoriz className="icon" />
-          </button>
-        </Tooltip>
-
       </span>
 
     </span>

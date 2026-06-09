@@ -8,19 +8,19 @@ import axios from "axios";
 
 const Portfolio = () => {
 
-  const [summary,
-    setSummary] =
+  const [stats,
+    setStats] =
     useState(null);
 
   useEffect(() => {
 
     axios
       .get(
-        "http://localhost:3002/portfolioSummary"
+        "http://localhost:3002/portfolioStats"
       )
       .then((res) => {
 
-        setSummary(
+        setStats(
           res.data
         );
 
@@ -33,7 +33,7 @@ const Portfolio = () => {
 
   }, []);
 
-  if (!summary)
+  if (!stats)
     return <h3>Loading...</h3>;
 
   return (
@@ -49,14 +49,11 @@ const Portfolio = () => {
         <div className="portfolio-card">
 
           <h4>
-            Total Investment
+            Total Stocks
           </h4>
 
           <h2>
-            ₹
-            {
-              summary.invested.toFixed(2)
-            }
+            {stats.totalStocks}
           </h2>
 
         </div>
@@ -64,14 +61,11 @@ const Portfolio = () => {
         <div className="portfolio-card">
 
           <h4>
-            Current Value
+            Total Quantity
           </h4>
 
           <h2>
-            ₹
-            {
-              summary.current.toFixed(2)
-            }
+            {stats.totalQty}
           </h2>
 
         </div>
@@ -79,20 +73,12 @@ const Portfolio = () => {
         <div className="portfolio-card">
 
           <h4>
-            Profit / Loss
+            Portfolio Value
           </h4>
 
-          <h2
-            className={
-              summary.profit >= 0
-                ? "profit"
-                : "loss"
-            }
-          >
+          <h2>
             ₹
-            {
-              summary.profit.toFixed(2)
-            }
+            {stats.portfolioValue.toFixed(2)}
           </h2>
 
         </div>
@@ -100,14 +86,56 @@ const Portfolio = () => {
         <div className="portfolio-card">
 
           <h4>
-            Total Holdings
+            Top Gainer
           </h4>
 
-          <h2>
+          <h2 className="profit">
+
             {
-              summary.holdingsCount
+              stats.topGainer
+                ? stats.topGainer.name
+                : "-"
             }
+
           </h2>
+
+          <p>
+
+            {
+              stats.topGainer
+                ? stats.topGainer.net
+                : "-"
+            }
+
+          </p>
+
+        </div>
+
+        <div className="portfolio-card">
+
+          <h4>
+            Top Loser
+          </h4>
+
+          <h2 className="loss">
+
+            {
+              stats.topLoser
+                ? stats.topLoser.name
+                : "-"
+            }
+
+          </h2>
+
+          <p>
+
+            {
+              stats.topLoser
+                ? stats.topLoser.net
+                : "-"
+            }
+
+          </p>
 
         </div>
 

@@ -21,7 +21,7 @@ const Analytics = () => {
 
   }, []);
 
-  
+
   const totalInvestment = holdings.reduce(
     (acc, stock) =>
       acc + stock.avg * stock.qty,
@@ -40,12 +40,43 @@ const Analytics = () => {
   const profitPercent =
     totalInvestment > 0
       ? (
-          (totalProfit / totalInvestment) *
-          100
-        ).toFixed(2)
+        (totalProfit / totalInvestment) *
+        100
+      ).toFixed(2)
       : 0;
 
- 
+  const totalStocks =
+    holdings.length;
+
+  const topGainer =
+  holdings.reduce(
+    (max, stock) => {
+
+      const gain =
+        stock.price - stock.avg;
+
+      const maxGain =
+        (max?.price || 0) -
+        (max?.avg || 0);
+
+      return gain > maxGain
+        ? stock
+        : max;
+
+    },
+    null
+  );
+
+  const topInvestment =
+    holdings.reduce(
+      (max, stock) =>
+        stock.price * stock.qty >
+          ((max?.price || 0) *
+            (max?.qty || 0))
+          ? stock
+          : max,
+      null
+    );
 
   const doughnutData = {
     labels: holdings.map(
@@ -73,7 +104,7 @@ const Analytics = () => {
     ],
   };
 
-  
+
 
   const barData = {
     labels: holdings.map(
@@ -90,6 +121,28 @@ const Analytics = () => {
         ),
 
         backgroundColor: "#00d4ff",
+      },
+    ],
+  };
+
+  const profitData = {
+    labels: holdings.map(
+      (stock) => stock.name
+    ),
+
+    datasets: [
+      {
+        label: "Profit / Loss",
+
+        data: holdings.map(
+          (stock) =>
+            (stock.price -
+              stock.avg) *
+            stock.qty
+        ),
+
+        backgroundColor:
+          "#22c55e",
       },
     ],
   };
@@ -145,6 +198,36 @@ const Analytics = () => {
           </h3>
         </div>
 
+        <div className="analytics-card">
+          <p>Total Stocks</p>
+
+          <h3>
+            {totalStocks}
+          </h3>
+        </div>
+
+        <div className="analytics-card">
+          <p>Top Stock</p>
+
+          <h3>
+            {
+              topGainer?.name ||
+              "N/A"
+            }
+          </h3>
+        </div>
+
+        <div className="analytics-card">
+          <p>Largest Holding</p>
+
+          <h3>
+            {
+              topInvestment?.name ||
+              "N/A"
+            }
+          </h3>
+        </div>
+
       </div>
 
       <div className="analytics-chart-grid">
@@ -155,6 +238,10 @@ const Analytics = () => {
 
         <VerticalGraph
           data={barData}
+        />
+
+        <VerticalGraph
+          data={profitData}
         />
 
       </div>

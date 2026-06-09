@@ -116,8 +116,6 @@ const Dashboard = () => {
 
         </div>
 
-       
-
         <div className="dashboard-watchlist">
           <WatchList />
         </div>

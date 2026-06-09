@@ -1,76 +1,133 @@
 const express = require("express");
 const router = express.Router();
-const axios = require("axios");
+
+const YahooFinance =
+  require("yahoo-finance2").default;
+
+const yahooFinance =
+  new YahooFinance();
 
 const stockMap = {
-  TCS: "TCS",
-  INFY: "INFY",
-  RELIANCE: "RELIANCE",
-  HDFCBANK: "HDFCBANK",
-  ITC: "ITC",
-  SBIN: "SBIN",
+  TCS: "TCS.NS",
+  INFY: "INFY.NS",
+  RELIANCE: "RELIANCE.NS",
+  HDFCBANK: "HDFCBANK.NS",
+  ITC: "ITC.NS",
+  SBIN: "SBIN.NS",
 };
 
-router.get("/market/:symbol", async (req, res) => {
+router.get(
+  "/market/:symbol",
+  async (req, res) => {
 
-  try {
+    try {
 
-    const symbol =
-      req.params.symbol.toUpperCase();
+      const symbol =
+        req.params.symbol.toUpperCase();
 
-    const stockSymbol =
-      stockMap[symbol];
+      const yahooSymbol =
+        stockMap[symbol];
 
-    if (!stockSymbol) {
+      if (!yahooSymbol) {
 
-      return res.status(404).json({
-        message: "Stock not supported",
+        return res.status(404).json({
+          message:
+            "Stock not supported",
+        });
+
+      }
+
+      const quote =
+        await yahooFinance.quote(
+          yahooSymbol
+        );
+
+      const percent =
+        quote.regularMarketChangePercent || 0;
+
+      res.json({
+        symbol,
+        price:
+          quote.regularMarketPrice,
+
+        percent:
+          `${percent.toFixed(2)}%`,
+
+        isDown:
+          percent < 0,
+      });
+
+    } catch (err) {
+
+      console.log(
+        "MARKET ERROR:",
+        err
+      );
+
+      res.status(500).json({
+        message:
+          "Unable to fetch market data",
       });
 
     }
 
-    const response =
-      await axios.get(
-        `https://api.twelvedata.com/quote?symbol=${stockSymbol}&exchange=NSE&apikey=${process.env.TWELVE_API_KEY}`
-      );
+  }
+);
 
-    const stock =
-      response.data;
+router.get(
+  "/indices",
+  async (req, res) => {
 
-    console.log(stock);
+    try {
 
-    if (stock.status === "error") {
+      const YahooFinance =
+        require("yahoo-finance2").default;
 
-      return res.status(400).json(stock);
+      const yahoo =
+        new YahooFinance({
+          suppressNotices: [
+            "yahooSurvey",
+          ],
+        });
+
+      const nifty =
+        await yahoo.quote("^NSEI");
+
+      const sensex =
+        await yahoo.quote("^BSESN");
+
+      res.json({
+        nifty: {
+          price:
+            nifty.regularMarketPrice,
+          percent:
+            nifty.regularMarketChangePercent?.toFixed(
+              2
+            ),
+        },
+
+        sensex: {
+          price:
+            sensex.regularMarketPrice,
+          percent:
+            sensex.regularMarketChangePercent?.toFixed(
+              2
+            ),
+        },
+      });
+
+    } catch (err) {
+
+      console.log(err);
+
+      res.status(500).json({
+        message:
+          "Unable to fetch indices",
+      });
 
     }
 
-    res.json({
-      symbol,
-      price:
-        Number(stock.close),
-
-      percent:
-        `${stock.percent_change}%`,
-
-      isDown:
-        Number(stock.percent_change) < 0,
-    });
-
-  } catch (err) {
-
-    console.log(
-      "TWELVE ERROR:",
-      err.response?.data || err.message
-    );
-
-    res.status(500).json({
-      message:
-        "Unable to fetch market data",
-    });
-
   }
-
-});
+);
 
 module.exports = router;

@@ -44,6 +44,9 @@ const notificationsRoutes =
 const portfolioRoutes =
   require("./routes/portfolioRoutes");
 
+const newsRoutes =
+  require("./routes/newsRoutes");
+
 app.use(notificationsRoutes);
 app.use(marketRoutes);
 app.use(authRoutes);
@@ -53,6 +56,7 @@ app.use(positionRoutes);
 app.use(watchlistRoutes);
 app.use(fundsRoutes);
 app.use(portfolioRoutes);
+app.use(newsRoutes);
 
 app.post(
   "/watchlist",

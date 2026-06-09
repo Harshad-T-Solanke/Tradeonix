@@ -1,32 +1,98 @@
-import React from "react";
+import React,
+{
+  useEffect,
+  useState,
+} from "react";
+
+import axios from "axios";
 
 const News = () => {
+
+  const [news,
+    setNews] =
+    useState([]);
+
+  useEffect(() => {
+
+    axios
+      .get(
+        "http://localhost:3002/marketNews"
+      )
+      .then((res) => {
+
+        setNews(res.data);
+
+      })
+      .catch((err) => {
+
+        console.log(err);
+
+      });
+
+  }, []);
+
   return (
+
     <div className="news-page">
 
-      <h2>Market News</h2>
+      <h2>
+        Market News
+      </h2>
 
-      <div className="news-card">
-        <h4>
-          Reliance announces expansion
-        </h4>
-        <p>
-          Stock gains 4% after new
-          investment announcement.
-        </p>
-      </div>
+      {
+        news.length === 0
+        ? (
+          <h3>
+            Loading News...
+          </h3>
+        )
+        : (
+          news.map(
+            (item, index) => (
 
-      <div className="news-card">
-        <h4>
-          IT Stocks Rally
-        </h4>
-        <p>
-          TCS and Infosys lead gains.
-        </p>
-      </div>
+              <div
+                key={index}
+                className="news-card"
+              >
+
+                {
+                  item.urlToImage &&
+                  (
+                    <img
+                      src={item.urlToImage}
+                      alt="news"
+                      className="news-image"
+                    />
+                  )
+                }
+
+                <h4>
+                  {item.title}
+                </h4>
+
+                <p>
+                  {item.description}
+                </p>
+
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Read More →
+                </a>
+
+              </div>
+
+            )
+          )
+        )
+      }
 
     </div>
+
   );
+
 };
 
 export default News;

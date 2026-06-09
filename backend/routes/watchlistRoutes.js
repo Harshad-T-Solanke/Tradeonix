@@ -20,8 +20,6 @@ router.get(
           userId: req.params.userId,
         });
 
-      console.log(watchlist);
-
       res.json(watchlist);
 
     } catch (err) {
