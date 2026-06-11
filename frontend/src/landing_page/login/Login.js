@@ -8,32 +8,36 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+const handleLogin = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await axios.post(
-        "http://localhost:3002/login",
-        {
-          email,
-          password,
-        }
-      );
+  try {
+    console.log("Login Started");
 
-      console.log(res.data);
+    const res = await axios.post(
+      "http://localhost:3002/login",
+      {
+        email,
+        password,
+      }
+    );
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("name", res.data.name);
-      localStorage.setItem("userId",res.data.userId);
-      localStorage.setItem("email", res.data.email);
+    console.log("Login Success");
+    console.log(res.data);
 
-      window.location.href =
-  `http://localhost:3003/?userId=${res.data.userId}&name=${encodeURIComponent(res.data.name)}&email=${encodeURIComponent(res.data.email)}&token=${res.data.token}`;
+    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("name", res.data.name);
+    localStorage.setItem("userId", res.data.userId);
+    localStorage.setItem("email", res.data.email);
 
-    } catch (err) {
-      setError("Invalid email or password!");
-    }
-  };
+    window.location.href =
+      `http://localhost:3000/dashboard/?userId=${res.data.userId}&name=${encodeURIComponent(res.data.name)}&email=${encodeURIComponent(res.data.email)}&token=${res.data.token}`;
+
+  } catch (err) {
+    console.log(err);
+    setError("Invalid email or password!");
+  }
+};
 
   return (
     <div className="login-page">

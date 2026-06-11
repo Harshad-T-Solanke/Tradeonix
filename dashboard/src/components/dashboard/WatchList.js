@@ -6,8 +6,13 @@ import { KeyboardArrowUp, KeyboardArrowDown, BarChartOutlined, MoreHoriz } from 
 import GeneralContext from '../../context/GeneralContext';
 import { DoughnutChart } from "../charts/DoughnutChart";
 
+import ThemeContext
+  from "../../context/ThemeContext";
 
 const WatchList = () => {
+
+  const { theme } =
+    useContext(ThemeContext);
 
   const handleAddStock = async () => {
 
@@ -56,16 +61,16 @@ const WatchList = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [watchlist, setWatchlist] = useState([]);
-
   useEffect(() => {
+    const userId = localStorage.getItem("userId");
 
-    const userId =
-      localStorage.getItem("userId");
+    console.log("User ID:", userId);
 
-    axios
-      .get(
-        `http://localhost:3002/watchlist/${userId}`
-      )
+    if (!userId) return;
+
+    axios.get(
+      `http://localhost:3002/watchlist/${userId}`
+    )
       .then(async (res) => {
 
         const stocks = res.data;
@@ -166,7 +171,7 @@ const WatchList = () => {
 
   return (
 
-    <div className="watchlist-container">
+    <div className={`watchlist-container ${theme}`}>
       <button
         className="add-stock-btn"
         onClick={handleAddStock}
@@ -240,7 +245,7 @@ const WatchListItem = ({ stock }) => {
           }
 
           <span className="price">
-            ₹ {Number(stock.price).toFixed(2)}
+            ₹ {stock.price ? Number(stock.price).toFixed(2) : "0.00"}
           </span>
         </div>
       </div>

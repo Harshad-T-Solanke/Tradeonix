@@ -2,9 +2,12 @@ import React,
 {
   useEffect,
   useState,
+  useContext,
 } from "react";
 
 import axios from "axios";
+import ThemeContext
+from "../../context/ThemeContext";
 
 import {
   FaSearch,
@@ -13,6 +16,9 @@ import {
 
 
 const TopBar = () => {
+
+  const { theme } =
+  useContext(ThemeContext);
 
   const userName =
     localStorage.getItem("name") ||
@@ -80,7 +86,7 @@ const [searchResult, setSearchResult] =
 
   return (
 
-    <div className="topbar-container">
+    <div className={`topbar-container ${theme}`}>
 
       <div className="market-section">
 
@@ -147,17 +153,12 @@ const [searchResult, setSearchResult] =
               indices.sensex?.percent
             }%
           </span>
-
         </div>
-
       </div>
-
       <div className="search-container">
-
         <FaSearch
           className="search-icon"
         />
-
         <input
           type="text"
           placeholder="Search TCS, INFY, RELIANCE..."
@@ -167,7 +168,6 @@ const [searchResult, setSearchResult] =
           }
           onKeyDown={handleSearch}
         />
-
         {
   searchResult && (
 
@@ -190,12 +190,9 @@ const [searchResult, setSearchResult] =
       >
         {searchResult.percent}
       </span>
-
     </div>
-
   )
 }
-
       </div>
 
       <div className="topbar-right">

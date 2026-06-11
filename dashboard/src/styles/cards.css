@@ -241,7 +241,6 @@
 
 }
 
-
 .orders-page{
   padding:25px;
 }
@@ -462,4 +461,63 @@
 .analytics-card h3{
   color:white;
   margin-top:10px;
+}
+.download-report-btn{
+  margin-top:25px;
+
+  background:#00d4ff;
+  color:white;
+
+  border:none;
+
+  padding:12px 20px;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  font-weight:600;
+}
+
+.download-report-btn:hover{
+  opacity:0.9;
+}
+/* LIGHT THEME - ORDERS */
+
+.dashboard-wrapper.light .orders-header h2{
+  color:#111827 !important;
+}
+
+.dashboard-wrapper.light .orders-header p{
+  color:#64748b !important;
+}
+
+.dashboard-wrapper.light .orders-table-wrapper{
+  background:#ffffff !important;
+  border:1px solid #e5e7eb !important;
+}
+
+.dashboard-wrapper.light .orders-table{
+  background:#ffffff !important;
+}
+
+.dashboard-wrapper.light .orders-table th{
+  color:#111827 !important;
+}
+
+.dashboard-wrapper.light .orders-table td{
+  color:#111827 !important;
+}
+
+.dashboard-wrapper.light .orders-empty-card{
+  background:#ffffff !important;
+  border:1px solid #e5e7eb !important;
+}
+
+.dashboard-wrapper.light .orders-empty-card h3{
+  color:#111827 !important;
+}
+
+.dashboard-wrapper.light .orders-empty-card p{
+  color:#64748b !important;
 }

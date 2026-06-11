@@ -169,8 +169,6 @@ const Holdings = () => {
 
     </div>
 
-    
-
     <div className="holdings-chart-card">
 
       <h3>

@@ -1,20 +1,17 @@
 import React from "react";
 import {
-  FaTwitter,
   FaLinkedin,
   FaGithub,
+  FaCode,
 } from "react-icons/fa";
 
 function Team() {
   return (
     <section className="container py-5">
 
-     
-
       <div className="text-center mb-5">
-
         <div className="trade-badge mb-4">
-          👨‍💻 Leadership
+          🚀 Developer
         </div>
 
         <h1
@@ -24,7 +21,7 @@ function Team() {
           }}
         >
           Meet The
-          <span className="gradient-text"> Visionary </span>
+          <span className="gradient-text"> Developer </span>
           Behind Tradeonix
         </h1>
 
@@ -36,29 +33,23 @@ function Team() {
             lineHeight: "1.8",
           }}
         >
-          Building the next-generation trading ecosystem focused on
-          simplicity, speed, and innovation for modern investors.
+          Passionate about building modern fintech solutions using the
+          MERN stack and creating seamless digital experiences for
+          traders and investors.
         </p>
       </div>
 
-     
-
       <div className="team-card">
-
         <div className="row align-items-center">
-
-          
 
           <div className="col-md-5 text-center mb-5 mb-md-0">
 
             <div className="team-image-wrapper">
-
               <img
-                src="media/images/nithinKamath.jpg"
-                alt="Founder"
+                src="media/images/harshad.jpg"
+                alt="Harshad Solanke"
                 className="team-image"
               />
-
             </div>
 
             <h3 className="mt-4 text-white fw-bold">
@@ -66,32 +57,37 @@ function Team() {
             </h3>
 
             <p style={{ color: "#00d4ff" }}>
-              Founder & Full Stack Developer
+              Full Stack Developer
             </p>
-
-           
 
             <div className="d-flex justify-content-center gap-3 mt-4">
 
-              <div className="glass-icon">
-                <FaTwitter />
-              </div>
-
-              <div className="glass-icon">
+              <a
+                href="https://linkedin.com/in/YOUR-LINKEDIN"
+                target="_blank"
+                rel="noreferrer"
+                className="glass-icon"
+              >
                 <FaLinkedin />
-              </div>
+              </a>
+
+              <a
+                href="https://github.com/Harshad-T-Solanke"
+                target="_blank"
+                rel="noreferrer"
+                className="glass-icon"
+              >
+                <FaGithub />
+              </a>
 
               <div className="glass-icon">
-                <FaGithub />
+                <FaCode />
               </div>
 
             </div>
           </div>
 
-          
-
           <div className="col-md-7">
-
             <div className="team-content">
 
               <h2 className="text-white mb-4">
@@ -99,45 +95,43 @@ function Team() {
               </h2>
 
               <p>
-                Tradeonix was created with the vision of building a
-                modern, intelligent, and accessible trading platform
-                for everyone.
+                Tradeonix is a modern stock trading platform inspired
+                by leading fintech applications and developed as a
+                full-stack MERN project.
               </p>
 
               <p>
-                Inspired by real-world fintech ecosystems, Tradeonix
-                combines performance, clean design, and powerful
-                trading tools into one seamless experience.
+                The platform focuses on delivering a clean user
+                experience, portfolio management, market insights,
+                analytics, and intuitive trading workflows.
               </p>
 
               <p>
-                The mission is simple — empower traders and investors
-                with next-generation technology, real-time analytics,
-                and a premium investing experience.
+                Through Tradeonix, I aim to demonstrate strong skills
+                in React.js, Node.js, Express.js, MongoDB, REST APIs,
+                authentication, and modern UI development.
               </p>
-
-            
 
               <div className="row mt-5">
 
                 <div className="col-4">
                   <div className="mini-card text-center">
-                    <h2>1M+</h2>
-                    <p>Trades Processed</p>
+                    <h2>MERN</h2>
+                    <p>Tech Stack</p>
                   </div>
                 </div>
 
                 <div className="col-4">
                   <div className="mini-card text-center">
-                    <h2>99.9%</h2>
-                    <p>Platform Uptime</p>
+                    <h2>15+</h2>
+                    <p>Core Features</p>
                   </div>
                 </div>
 
                 <div className="col-4">
                   <div className="mini-card text-center">
-                    <h2>24/7</h2>
-                    <p>Market Insights</p>
+                    <h2>100%</h2>
+                    <p>Self Developed</p>
                   </div>
                 </div>
 

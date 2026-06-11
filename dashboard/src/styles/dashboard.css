@@ -8,7 +8,31 @@
   background: #111827;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
+.topbar-container {
+  background: #0f172a;
+  color: white;
+}
 
+.topbar-container.light {
+  background: white;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+}
+.topbar-container.light .market-card {
+  background: #f8fafc;
+  color: #111827;
+}
+
+.topbar-container.light .profile-box {
+  background: #f8fafc;
+  color: #111827;
+}
+
+.topbar-container.light input {
+  background: white;
+  color: #111827;
+  border: 1px solid #d1d5db;
+}
 .market-section {
   display: flex;
   align-items: center;
@@ -114,6 +138,25 @@
 .profile-box svg {
   font-size: 24px;
   color: #00d4ff;
+}
+
+.watchlist-container.light .search {
+  background: white;
+  color: black;
+  border: 1px solid #ddd;
+}
+
+.watchlist-container.dark .search {
+  background: #1e293b;
+  color: white;
+  border: 1px solid #334155;
+}
+.watchlist-container.dark .search::placeholder {
+  color: #94a3b8;
+}
+
+.watchlist-container.light .search::placeholder {
+  color: #64748b;
 }
 
 .watchlist-container {
@@ -797,7 +840,6 @@
   cursor: pointer;
 }
 
-/* LIGHT MODE */
 
 .dashboard-wrapper.light {
   background: #f8fafc;

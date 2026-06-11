@@ -4,37 +4,86 @@ import React,
   useState,
 } from "react";
 
+import jsPDF from "jspdf";
+
 import axios from "axios";
 
 const Portfolio = () => {
 
-  const [stats,
-    setStats] =
+  const [stats, setStats] =
     useState(null);
 
-  useEffect(() => {
+  const downloadPDF = () => {
 
+    const doc = new jsPDF();
+
+    doc.setFontSize(20);
+
+    doc.text(
+      "Tradeonix Portfolio Report",
+      20,
+      20
+    );
+
+    doc.setFontSize(12);
+
+    doc.text(
+      `Total Stocks: ${stats.totalStocks}`,
+      20,
+      50
+    );
+
+    doc.text(
+      `Total Quantity: ${stats.totalQty}`,
+      20,
+      70
+    );
+
+    doc.text(
+      `Portfolio Value: ₹${stats.portfolioValue.toFixed(2)}`,
+      20,
+      90
+    );
+
+    doc.text(
+      `Top Gainer: ${
+        stats.topGainer
+          ? stats.topGainer.name
+          : "-"
+      }`,
+      20,
+      110
+    );
+
+    doc.text(
+      `Top Loser: ${
+        stats.topLoser
+          ? stats.topLoser.name
+          : "-"
+      }`,
+      20,
+      130
+    );
+
+    doc.save(
+      "Tradeonix_Portfolio_Report.pdf"
+    );
+
+  };
+
+  useEffect(() => {
     axios
       .get(
         "http://localhost:3002/portfolioStats"
       )
       .then((res) => {
-
-        setStats(
-          res.data
-        );
-
-      })
-      .catch((err) => {
-
-        console.log(err);
-
+        setStats(res.data);
       });
-
   }, []);
 
   if (!stats)
     return <h3>Loading...</h3>;
+
 
   return (
 
@@ -140,6 +189,12 @@ const Portfolio = () => {
         </div>
 
       </div>
+      <button
+  className="download-report-btn"
+  onClick={downloadPDF}
+>
+  Download Portfolio Report
+</button>
 
     </div>
 
