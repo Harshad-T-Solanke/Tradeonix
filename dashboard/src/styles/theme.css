@@ -1,0 +1,306 @@
+.dashboard-wrapper.dark .holdings-page,
+.dashboard-wrapper.dark .holdings-page h2,
+.dashboard-wrapper.dark .holdings-page h3,
+.dashboard-wrapper.dark .holdings-page p,
+.dashboard-wrapper.dark .holdings-page td,
+.dashboard-wrapper.dark .holdings-page th,
+.dashboard-wrapper.dark .stock-name {
+  color: #ffffff;
+}
+
+.dashboard-wrapper.light .holdings-page,
+.dashboard-wrapper.light .holdings-page h2,
+.dashboard-wrapper.light .holdings-page h3,
+.dashboard-wrapper.light .holdings-page p,
+.dashboard-wrapper.light .holdings-page td,
+.dashboard-wrapper.light .holdings-page th,
+.dashboard-wrapper.light .stock-name {
+  color: #111827;
+}
+.dashboard-wrapper.light .holdings-table {
+  background: #ffffff;
+}
+.dashboard-wrapper.dark .holdings-table {
+  background: #1e293b;
+}
+.dashboard-wrapper.light .holding-card,
+.dashboard-wrapper.light .holdings-chart-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+.dashboard-wrapper.dark .holding-card,
+.dashboard-wrapper.dark .holdings-chart-card {
+  background: #1e293b;
+}
+.dashboard-wrapper.light .holdings-chart-card h3 {
+  color: #111827 !important;
+}
+.dashboard-wrapper.light .holdings-page * {
+  color: #111827;
+}
+
+.dashboard-wrapper.dark .holdings-page * {
+  color: #ffffff;
+}
+.profit {
+  color: #22c55e !important;
+}
+
+.loss {
+  color: #ef4444 !important;
+}
+
+.dashboard-wrapper.light .positions-page,
+.dashboard-wrapper.light .positions-page h2,
+.dashboard-wrapper.light .positions-page h3,
+.dashboard-wrapper.light .positions-page p,
+.dashboard-wrapper.light .positions-table th,
+.dashboard-wrapper.light .positions-table td,
+.dashboard-wrapper.light .instrument-name {
+  color: #111827 !important;
+}
+
+.dashboard-wrapper.light .positions-table {
+  background: #ffffff;
+}
+
+.dashboard-wrapper.light .positions-table tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dashboard-wrapper.dark .positions-page,
+.dashboard-wrapper.dark .positions-page h2,
+.dashboard-wrapper.dark .positions-page h3,
+.dashboard-wrapper.dark .positions-page p,
+.dashboard-wrapper.dark .positions-table th,
+.dashboard-wrapper.dark .positions-table td,
+.dashboard-wrapper.dark .instrument-name {
+  color: #ffffff !important;
+}
+
+.dashboard-wrapper.light .positions-table thead {
+  background: #f8fafc;
+}
+
+.dashboard-wrapper.light .positions-table th {
+  color: #111827;
+}
+
+.dashboard-wrapper.dark .positions-table thead {
+  background: #111827;
+}
+
+.dashboard-wrapper.dark .positions-table th {
+  color: #94a3b8;
+}
+
+.dashboard-wrapper.light .funds-header h2,
+.dashboard-wrapper.light .fund-card h3,
+.dashboard-wrapper.light .funds-table h4,
+.dashboard-wrapper.light .commodity-card h4,
+.dashboard-wrapper.light .fund-row span:last-child {
+  color: #111827 !important;
+}
+
+.dashboard-wrapper.light .funds-header p,
+.dashboard-wrapper.light .fund-card p,
+.dashboard-wrapper.light .commodity-card p,
+.dashboard-wrapper.light .fund-row span:first-child {
+  color: #64748b !important;
+}
+
+.dashboard-wrapper.light .fund-card,
+.dashboard-wrapper.light .funds-table,
+.dashboard-wrapper.light .commodity-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.dashboard-wrapper.light .fund-row {
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.dashboard-wrapper.dark .fund-card,
+.dashboard-wrapper.dark .funds-table,
+.dashboard-wrapper.dark .commodity-card {
+  background: #0f172a;
+}
+
+.dashboard-wrapper.dark .funds-header h2,
+.dashboard-wrapper.dark .fund-card h3,
+.dashboard-wrapper.dark .funds-table h4,
+.dashboard-wrapper.dark .commodity-card h4,
+.dashboard-wrapper.dark .fund-row span:last-child {
+  color: white;
+}
+.dashboard-wrapper.light .analytics-page h2,
+.dashboard-wrapper.light .analytics-card h3,
+.dashboard-wrapper.light .portfolio-page h2,
+.dashboard-wrapper.light .market-page h2,
+.dashboard-wrapper.light .news-page h2 {
+  color: #111827 !important;
+}
+
+.dashboard-wrapper.light .analytics-card p {
+  color: #64748b !important;
+}
+
+.dashboard-wrapper.light .analytics-card {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+}
+.dashboard-wrapper.dark .analytics-page h2,
+.dashboard-wrapper.dark .analytics-card h3,
+.dashboard-wrapper.dark .portfolio-page h2,
+.dashboard-wrapper.dark .market-page h2,
+.dashboard-wrapper.dark .news-page h2 {
+  color: white !important;
+}
+
+.dashboard-wrapper.light .chart-card,
+.dashboard-wrapper.light .doughnut-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.dashboard-wrapper.light .chart-header h3 {
+  color: #111827 !important;
+}
+
+.dashboard-wrapper.light .chart-header span {
+  color: #64748b !important;
+}
+
+.dashboard-wrapper.dark .chart-card,
+.dashboard-wrapper.dark .doughnut-card {
+  background: #0f172a;
+}
+
+.dashboard-wrapper.dark .chart-header h3 {
+  color: white;
+}
+
+.dashboard-wrapper.light .portfolio-page h2,
+.dashboard-wrapper.light .portfolio-card h2,
+.dashboard-wrapper.light .portfolio-card h4,
+.dashboard-wrapper.light .portfolio-card p {
+  color: #111827 !important;
+}
+
+.dashboard-wrapper.light .portfolio-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.dashboard-wrapper.dark .portfolio-page h2,
+.dashboard-wrapper.dark .portfolio-card h2,
+.dashboard-wrapper.dark .portfolio-card h4,
+.dashboard-wrapper.dark .portfolio-card p {
+  color: white !important;
+}
+
+.dashboard-wrapper.dark .portfolio-card {
+  background: #0f172a;
+}
+
+.dashboard-wrapper.light .market-page h2,
+.dashboard-wrapper.light .market-card h3,
+.dashboard-wrapper.light .market-stock-row span:first-child {
+  color: #111827 !important;
+}
+
+.dashboard-wrapper.light .market-card p {
+  color: #64748b !important;
+}
+
+.dashboard-wrapper.light .market-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.dashboard-wrapper.light .market-stock-row {
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.dashboard-wrapper.light .profit {
+  color: #22c55e !important;
+}
+
+.dashboard-wrapper.light .loss {
+  color: #ef4444 !important;
+}
+
+.dashboard-wrapper.dark .market-page h2,
+.dashboard-wrapper.dark .market-card h3 {
+  color: white;
+}
+
+.dashboard-wrapper.dark .profit {
+  color: #22c55e;
+}
+
+.dashboard-wrapper.dark .loss {
+  color: #ef4444;
+}
+
+.dashboard-wrapper.light .news-page h2 {
+  color: #111827 !important;
+}
+
+.dashboard-wrapper.light .news-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.dashboard-wrapper.light .news-card h4 {
+  color: #111827 !important;
+}
+
+.dashboard-wrapper.light .news-card p {
+  color: #64748b !important;
+}
+
+.dashboard-wrapper.light .news-card a {
+  color: #2563eb !important;
+}
+
+.dashboard-wrapper.dark .news-card {
+  background: #0f172a;
+}
+
+.dashboard-wrapper.dark .news-card h4 {
+  color: white;
+}
+
+.dashboard-wrapper.dark .news-card p {
+  color: #94a3b8;
+}
+
+.dashboard-wrapper.light .notifications-page h2,
+.dashboard-wrapper.light .notification-card h4 {
+  color: #111827 !important;
+}
+
+.dashboard-wrapper.light .notification-card p {
+  color: #64748b !important;
+}
+
+.dashboard-wrapper.light .notification-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+
+.dashboard-wrapper.dark .notifications-page h2,
+.dashboard-wrapper.dark .notification-card h4 {
+  color: white !important;
+}
+
+.dashboard-wrapper.dark .notification-card p {
+  color: #94a3b8 !important;
+}
+
+.dashboard-wrapper.dark .notification-card {
+  background: #0f172a !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 import { DoughnutChart } from "../charts/DoughnutChart";
 import { VerticalGraph } from "../charts/VerticalGraph";
 
@@ -103,8 +102,6 @@ const Analytics = () => {
       },
     ],
   };
-
-
 
   const barData = {
     labels: holdings.map(

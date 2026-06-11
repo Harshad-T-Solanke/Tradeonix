@@ -7,6 +7,7 @@ import Home from './components/Home'
 import "./styles/dashboard.css";
 import "./styles/cards.css";
 import "./styles/charts.css"
+import "./styles/theme.css";
 
 import {
   ThemeProvider

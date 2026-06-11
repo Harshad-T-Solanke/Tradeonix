@@ -39,8 +39,6 @@ const TradeHistory = () => {
   return (
     <div className="orders-page">
 
-      {/* HEADER */}
-
       <div className="orders-header">
         <h2>Trade History</h2>
         <p>All your BUY and SELL trades</p>

@@ -17,9 +17,6 @@ const Positions = () => {
 
   return (
     <div className="positions-page">
-
-      {/* HEADER */}
-
       <div className="positions-header">
 
         <div>
@@ -34,8 +31,6 @@ const Positions = () => {
         </div>
 
       </div>
-
-      
 
       <div className="positions-table-wrapper">
 

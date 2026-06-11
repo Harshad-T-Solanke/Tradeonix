@@ -11,6 +11,8 @@ import {
 } from "chart.js";
 
 import { Bar } from "react-chartjs-2";
+import { useContext } from "react";
+import ThemeContext from "../../context/ThemeContext";
 
 ChartJS.register(
   CategoryScale,
@@ -18,83 +20,115 @@ ChartJS.register(
   BarElement,
   PointElement,
   LineElement,
-
   Title,
   Tooltip,
   Legend
 );
 
-export const options = {
-  responsive: true,
+export function VerticalGraph({ data }) {
 
-  maintainAspectRatio: false,
+  const { theme } = useContext(ThemeContext);
 
-  animation: {
-    duration: 1800,
-  },
+  const options = {
+    responsive: true,
 
-  plugins: {
-    legend: {
-      display: false,
+    maintainAspectRatio: false,
+
+    animation: {
+      duration: 1800,
     },
 
-    title: {
-      display: true,
-      text: "Portfolio Performance",
-      color: "#ffffff",
-      font: {
-        size: 20,
-        weight: "bold",
-      },
-      padding: {
-        bottom: 25,
-      },
-    },
-
-    tooltip: {
-      backgroundColor: "#0f172a",
-      titleColor: "#ffffff",
-      bodyColor: "#cbd5e1",
-      borderColor: "#00d4ff",
-      borderWidth: 1,
-      padding: 12,
-    },
-  },
-
-  scales: {
-    x: {
-      ticks: {
-        color: "#94a3b8",
-      },
-
-      grid: {
+    plugins: {
+      legend: {
         display: false,
       },
-    },
 
-    y: {
-      beginAtZero: true,
+      title: {
+        display: true,
+        text: "Portfolio Performance",
 
-      ticks: {
-        color: "#94a3b8",
+        color:
+          theme === "light"
+            ? "#111827"
+            : "#ffffff",
+
+        font: {
+          size: 20,
+          weight: "bold",
+        },
+
+        padding: {
+          bottom: 25,
+        },
       },
 
-      grid: {
-        color: "rgba(255,255,255,0.08)",
+      tooltip: {
+        backgroundColor:
+          theme === "light"
+            ? "#ffffff"
+            : "#0f172a",
+
+        titleColor:
+          theme === "light"
+            ? "#111827"
+            : "#ffffff",
+
+        bodyColor:
+          theme === "light"
+            ? "#111827"
+            : "#cbd5e1",
+
+        borderColor: "#00d4ff",
+
+        borderWidth: 1,
+
+        padding: 12,
       },
     },
-  },
-};
 
-export function VerticalGraph({ data }) {
+    scales: {
+
+      x: {
+
+        ticks: {
+          color:
+            theme === "light"
+              ? "#111827"
+              : "#94a3b8",
+        },
+
+        grid: {
+          display: false,
+        },
+      },
+
+      y: {
+
+        beginAtZero: true,
+
+        ticks: {
+          color:
+            theme === "light"
+              ? "#111827"
+              : "#94a3b8",
+        },
+
+        grid: {
+          color:
+            theme === "light"
+              ? "rgba(0,0,0,0.08)"
+              : "rgba(255,255,255,0.08)",
+        },
+      },
+    },
+  };
+
   return (
     <div className="chart-card">
-
       <Bar
         options={options}
         data={data}
       />
-
     </div>
   );
 }

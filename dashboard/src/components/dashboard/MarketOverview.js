@@ -34,7 +34,6 @@ change: "-0.15%",
 
 return ( <div className="market-page">
 
-```
   <h2>Market Overview</h2>
 
   <div className="analytics-cards">

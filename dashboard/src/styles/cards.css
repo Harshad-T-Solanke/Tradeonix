@@ -107,11 +107,6 @@
   background:#7c3aed;
 }
 
-
-.funds-page{
-  padding:25px;
-}
-
 .funds-header{
   display:flex;
   justify-content:space-between;
@@ -120,7 +115,6 @@
 }
 
 .funds-header h2{
-  color:white;
   margin-bottom:6px;
 }
 
@@ -185,7 +179,6 @@
 }
 
 .fund-card h3{
-  color:white;
   margin-top:10px;
 }
 
@@ -206,7 +199,6 @@
 
 .funds-table h4,
 .commodity-card h4{
-  color:white;
   margin-bottom:20px;
 }
 
@@ -222,16 +214,11 @@
   color:#94a3b8;
 }
 
-.fund-row span:last-child{
-  color:white;
-}
 
 .commodity-card p{
   color:#94a3b8;
   margin-bottom:20px;
 }
-
-
 
 @media(max-width:900px){
 
@@ -322,7 +309,6 @@
 }
 
 .positions-header h2{
-  color:white;
   margin-bottom:6px;
 }
 
@@ -332,7 +318,6 @@
 
 .position-badge{
   background:#00d4ff;
-  color:white;
   padding:10px 18px;
   border-radius:30px;
   font-weight:600;
@@ -362,7 +347,6 @@
 }
 
 .positions-table td{
-  color:white;
   padding:18px;
 }
 
@@ -482,8 +466,6 @@
 .download-report-btn:hover{
   opacity:0.9;
 }
-/* LIGHT THEME - ORDERS */
-
 .dashboard-wrapper.light .orders-header h2{
   color:#111827 !important;
 }
